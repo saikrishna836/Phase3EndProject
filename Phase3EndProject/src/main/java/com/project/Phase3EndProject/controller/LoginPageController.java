@@ -48,7 +48,6 @@ public class LoginPageController {
 	public String signUpPage() {
 		return "usersignup";
 	}
-
 	@RequestMapping("/adduser")
 	public String userSignUp(@ModelAttribute("user") User user, ModelMap model) {
 		List<User> result = u_repo.findByEmail(user.getEmail());
@@ -67,7 +66,6 @@ public class LoginPageController {
 			return "usersignup";
 		}
 	}
-
 	@RequestMapping("/adminvalidation")
 	public String adminPage(@RequestParam("email") String email, @RequestParam("password") String password,
 			ModelMap model) {
@@ -83,7 +81,6 @@ public class LoginPageController {
 		}
 
 	}
-
 	@RequestMapping("/uservalidation")
 	public String userPage(@RequestParam("email") String email, @RequestParam("password") String password,
 			ModelMap model) {

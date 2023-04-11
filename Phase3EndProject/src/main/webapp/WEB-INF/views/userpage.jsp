@@ -10,7 +10,7 @@
 </head>
 <body>
 	<center>
-		<h1>Welocome to Menu Space</h1>
+		<h1>Welcome to Menu Space</h1>
 		<table>
 			<tr>
 				<td>Product Id</td>

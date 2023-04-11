@@ -26,7 +26,6 @@ public class UserController {
 	UserRepository u_repo;
 	@Autowired
 	ReportRepository r_repo;
-
 	@RequestMapping("/payment")
 	public String pay(@RequestParam("id") int id, @RequestParam("u_id") String u_id, @ModelAttribute("user") User user,
 			ModelMap model) {
@@ -47,7 +46,6 @@ public class UserController {
 			return "userpage";
 		}
 	}
-
 	@RequestMapping("/reports")
 	public String userPage(@RequestParam("p_id") String p_id, @RequestParam("u_id1") String u_id1, ModelMap model) {
 		int id = Integer.parseInt(p_id);

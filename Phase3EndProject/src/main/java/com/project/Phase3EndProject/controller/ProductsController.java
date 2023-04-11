@@ -1,15 +1,12 @@
 package com.project.Phase3EndProject.controller;
-
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.OrderBy;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -19,10 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.project.Phase3EndProject.Entity.Product;
 import com.project.Phase3EndProject.Repository.ProductRepository;
-
 @Controller
 @ComponentScan("com.project.Phase3EndProject")
 public class ProductsController {
@@ -38,7 +33,6 @@ public class ProductsController {
 	public String addProduct() {
 		return "addproducts";
 	}
-
 	@RequestMapping("/delproduct")
 	public String delProduct(ModelMap model) {
 		Iterable<Product> products = p_repo.findAll();
@@ -46,7 +40,6 @@ public class ProductsController {
 		model.addAttribute("products", products);
 		return "delproducts";
 	}
-
 	@RequestMapping("/productaddition")
 	public String addtoDb(@ModelAttribute("product") Product product, ModelMap model) {
 		Product result = p_repo.save(product);
@@ -58,7 +51,6 @@ public class ProductsController {
 			return "adminpage";
 		}
 	}
-
 	@RequestMapping("/productdeletion")
 	public String delfromDb(@RequestParam("Id") int Id, ModelMap model) {
 		if (!p_repo.findById(Id).isEmpty()) {
