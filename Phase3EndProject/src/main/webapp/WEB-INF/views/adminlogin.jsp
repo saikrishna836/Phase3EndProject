@@ -16,7 +16,7 @@
 		<tr><td><input type="submit" value="Login"/></td></tr>
 		</table>
 	</form>
-	<form action="adminpage">
+	<form action="passwordpage">
 	<table><tr><td><input type="submit" value="change password"/></td></tr></table>
 	</form>
 	</center>

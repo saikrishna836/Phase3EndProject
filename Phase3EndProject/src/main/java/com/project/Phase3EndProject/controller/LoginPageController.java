@@ -93,21 +93,54 @@ public class LoginPageController {
 		List<User>user = u_repo.findByEmail(email);
 
 		if (user.isEmpty()) {
-			model.addAttribute("message", "Invalid Admin Credentials");
+			model.addAttribute("message", "Invalid User Credentials");
 			return "userlogin";
 		} else {
 			if (user.get(0).getPassword().equals(password)) {
 				
 				Iterable<Product> result=p_repo.findAll();
-				System.out.println(result);
+				System.out.println(user.get(0));
 				model.addAttribute("user", user.get(0));
 				model.addAttribute("products", result);
 				return "userpage";
 			} else {
-				model.addAttribute("message", "Invalid Admin Credentials");
+				model.addAttribute("message", "Invalid User Credentials");
 				return "userlogin";
 			}
 		}
 
+	}
+	@RequestMapping("/password")
+	public String PasswordChange(@RequestParam("email") String email,@RequestParam("old_password") String op,@RequestParam("new_password") String np, @RequestParam("c_new_password") String cnp, ModelMap model) {
+		List<Admin> admin=a_repo.findByEmail(email);
+		if(!admin.isEmpty()) {
+		if(np.equals(cnp)) {
+		
+			Admin pw=admin.get(0);
+			if(pw.getPassword().equals(op)) {
+				pw.setPassword(np);
+				a_repo.save(pw);
+				model.addAttribute("message","Password Change Successfull");
+				return "adminlogin";			}
+			else {
+				model.addAttribute("message"," Old Password Wrong");
+				return "password";
+			}
+		}
+		else {
+			model.addAttribute("message","Both new Passwords are not same");
+			return "password";
+		}
+		}
+		else {
+			model.addAttribute("message","Wrong Email");
+			return "password";
+		}
+		
+	}
+	@RequestMapping("/passwordpage")
+	public String PasswordPage() {
+		return "password";
+		
 	}
 }

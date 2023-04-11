@@ -18,7 +18,7 @@
 <form action="manageUsers">
 <input type="submit" value="Manage Users"/>
 </form>
-<form action="adminreports">
+<form action="purchasereports">
 <input type="submit" value="Generate Purchase Reports"/>
 </form>
 </center>

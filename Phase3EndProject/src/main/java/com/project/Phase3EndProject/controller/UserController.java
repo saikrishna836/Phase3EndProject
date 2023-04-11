@@ -28,14 +28,25 @@ public class UserController {
 	ReportRepository r_repo;
 
 	@RequestMapping("/payment")
-	public String pay(@RequestParam("id") int id,@RequestParam("u_id") int u_id,@ModelAttribute("user") User user, ModelMap model) {
+	public String pay(@RequestParam("id") int id,@RequestParam("u_id") String u_id,@ModelAttribute("user") User user, ModelMap model) {
 
 		Optional<Product> product1 = p_repo.findById(id);
+		if(!product1.isEmpty()) {
 		Product product=product1.get();
-		model.addAttribute("product", product);
-		model.addAttribute("u_id", u_id);
+		int id1=Integer.parseInt(u_id);
+		model.addAttribute("products", product);
+		model.addAttribute("u_id", id1);
 		model.addAttribute("id", id);
+	
 		return "payment";
+		}
+		else {
+			Iterable<Product> products=p_repo.findAll();
+			System.out.println(products);
+			model.addAttribute("products",products);
+			model.addAttribute("message", "Invalid options!select options from above");
+			return "userpage";
+		}
 	}
 
 	@RequestMapping("/reports")
@@ -43,6 +54,7 @@ public class UserController {
 	//	int id=Integer.parseInt(p_id);
 
 		Optional<Product> product1=p_repo.findById(p_id);
+		if(!product1.isEmpty()) {
 		Product product=product1.get();
 		Optional<User> user1=u_repo.findById(u_id);
 		User user=user1.get();
@@ -54,18 +66,28 @@ public class UserController {
 		report.setUsername(user.getName());
 		report.setU_id(u_id);
 		report.setLocaldate(new Date());
+		try {
 		r_repo.save(report);
 		model.addAttribute("message", "Payment Successfull");
-		return "userpage";
+		return "userlogin";
+		}catch(Exception e) {
+			model.addAttribute("message","Payment unsuccessfully");
+			return "userlogin";
+		}
+		}
+		else {
+			model.addAttribute("message","Payment unsuccessfully");
+			return "userlogin";
+		}
 	}
 
-	@RequestMapping("/paymentcancel")
+	@RequestMapping("/paymentscancel")
 	public String userPage(ModelMap model) {
 		Iterable<Product> products=p_repo.findAll();
 		System.out.println(products);
 		model.addAttribute("products",products);
 		model.addAttribute("message", "Payment cancelled");
-		return "userpage";
+		return "userlogin";
 	}
 
 	@RequestMapping("/manageUsers")
@@ -94,4 +116,5 @@ public class UserController {
 		model.addAttribute("message","List of All Users");
 		return "userreports";
 	}
+	
 }

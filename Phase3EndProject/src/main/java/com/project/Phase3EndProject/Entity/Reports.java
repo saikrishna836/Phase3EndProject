@@ -3,6 +3,7 @@ package com.project.Phase3EndProject.Entity;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Reports {
 	private String gender;
 	
 	private Date localdate;
+	@Column(name="user_id")
 	private int u_id;
 	public int getU_id() {
 		return u_id;

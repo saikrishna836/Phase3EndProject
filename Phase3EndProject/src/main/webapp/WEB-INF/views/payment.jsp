@@ -19,10 +19,11 @@
 	
 	<input type="submit" value="Yes"/>
 </form>
-<form action="userpage">
+<form action="paymentscancel">
 	<input type="submit" value="No"/>
 </form>
 </center>
 </center>
+<p>${message}</p>
 </body>
 </html>
