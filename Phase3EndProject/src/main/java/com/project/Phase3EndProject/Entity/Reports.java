@@ -8,26 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-@Entity(name="reports")
+@Entity(name = "reports")
 public class Reports {
 	@javax.persistence.Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	private String prodname;
 	private String brand;
 	private String username;
 	private String gender;
-	
+
 	private Date localdate;
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private int u_id;
+
 	public int getU_id() {
 		return u_id;
 	}
+
 	public void setU_id(int u_id) {
 		this.u_id = u_id;
 	}
-	public Reports(){}
+
+	public Reports() {
+	}
+
 	public int getId() {
 		return Id;
 	}
@@ -81,7 +86,5 @@ public class Reports {
 		return "Reports [Id=" + Id + ", prodname=" + prodname + ", brand=" + brand + ", username=" + username
 				+ ", gender=" + gender + ", localdate=" + localdate + ", u_id=" + u_id + "]";
 	}
-	
-	
-	
+
 }
