@@ -14,8 +14,8 @@
 <h1>${message}</h1>
 <table>
 			<tr><td>User Id</td><td>|</td><td>User Name</td><td>|</td><td>Email</td></tr>
-			<c:forEach items="${users}" var="user">
-				<tr><td>${user.id}</td><td>|</td><td>${user.name }</td><td>|</td><td>${user.email }</td></tr>
+			<c:forEach items="${users}" var="u">
+				<tr><td>${u.id}</td><td>|</td><td>${u.name }</td><td>|</td><td>${u.email }</td></tr>
 			</c:forEach>
 </table>
 </center>

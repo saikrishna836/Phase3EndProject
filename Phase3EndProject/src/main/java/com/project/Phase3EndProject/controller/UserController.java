@@ -96,9 +96,8 @@ public class UserController {
 	}
 	@RequestMapping("/searchusers")
 	public String searchUsers(@RequestParam("id") int id,ModelMap model) {
-		Optional<User> user1=u_repo.findById(id);
-		User user=user1.get();
-		if(user!=null) {
+		List<User> user=u_repo.find(id);
+		if(!user.isEmpty()) {
 		model.addAttribute("users",user);
 		model.addAttribute("message","User with id:"+id);
 		return "userreports";

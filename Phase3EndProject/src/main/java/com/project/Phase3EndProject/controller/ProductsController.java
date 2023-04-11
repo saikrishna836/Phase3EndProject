@@ -65,8 +65,15 @@ public class ProductsController {
 	}
 	@RequestMapping("/productdeletion")
 	public String delfromDb(@RequestParam("Id") int Id,ModelMap model) {
+		if(!p_repo.findById(Id).isEmpty()) {
 		p_repo.deleteById(Id);
-		return "user";
+		model.addAttribute("message","Product Deleted Successfully");
+		return "adminpage";
+		}
+		else {
+			model.addAttribute("message","Product Deletion Unsuccessfull");
+			return "adminpage";
+		}
 	}
 	@RequestMapping("/getbyname")
 	public String getbyProductName(ModelMap model) {

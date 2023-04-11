@@ -11,6 +11,7 @@ import com.project.Phase3EndProject.Entity.User;
 public interface UserRepository extends CrudRepository<User,Integer>{
 	List<User> findByEmail(String email);
 	List<User> findByPassword(String password);
-	
+	@Query(value="select * from user where id=:id",nativeQuery=true)
+	List<User> find(int id);
 
 }
