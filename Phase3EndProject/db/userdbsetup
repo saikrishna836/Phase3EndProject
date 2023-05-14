@@ -1,2 +1,0 @@
-use my_db;
-create table user(id int AUTO_INCREMENT PRIMARY KEY,name varchar(50), email varchar(50), password varchar(50));
