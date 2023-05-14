@@ -1,0 +1,11 @@
+use my_db;
+
+create table product (
+ id int AUTO_INCREMENT PRIMARY KEY,
+ prod_name varchar(50),
+    brand varchar(50),
+    gender varchar(6),
+    size int,
+    price varchar(50)
+
+);
